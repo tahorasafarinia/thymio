@@ -1,0 +1,25 @@
+﻿<!DOCTYPE aesl-source>
+<network>
+<event name="pair_run" size="1"/>
+<event name="debug_log" size="14"/>
+<node nodeId="{7f2312bd-fe68-4398-aba2-6f2762133efe}" name="Thymio 2 on DESKTOP-TDFOUPP - 20932"><toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<program advanced_mode="0">
+<set>
+<block value0="1" name="button" value5="0" value4="0" type="event" value2="0" value3="0" value6="0" value1="0"/>
+<block value0="250" name="move" type="action" value1="300"/>
+<block value0="0" name="colortop" type="action" value2="0" value1="32"/>
+</set>
+<set>
+<block value0="0" name="prox" value5="0" value4="0" type="event" value2="1" value3="1" value6="0" value7="1000" value8="2000" value1="1"/>
+<block value0="-250" name="move" type="action" value1="-300"/>
+<block value0="0" name="colortop" type="action" value2="0" value1="0"/>
+</set>
+<set/>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

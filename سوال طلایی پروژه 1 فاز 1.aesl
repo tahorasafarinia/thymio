@@ -1,0 +1,31 @@
+﻿<!DOCTYPE aesl-source>
+<network>
+<event size="1" name="pair_run"/>
+<event size="14" name="debug_log"/>
+<node nodeId="{b2bf7b26-61ab-4a57-a99c-34365bd2fe69}" name="Thymio on DESKTOP-TDFOUPP - 14724"><toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<program advanced_mode="0">
+<set>
+<block value1="0" value3="0" type="event" value2="0" value6="0" value5="0" value0="1" value4="0" name="button"/>
+<block value1="500" type="action" value0="500" name="move"/>
+<block value1="0" type="action" value2="32" value0="0" name="colortop"/>
+</set>
+<set>
+<block value1="0" value3="0" type="event" value2="1" value6="0" value5="0" value0="0" value4="0" name="button"/>
+<block value1="-100" type="action" value0="-100" name="move"/>
+<block value1="0" type="action" value2="0" value0="32" name="colortop"/>
+</set>
+<set>
+<block value1="0" value3="0" type="event" value2="0" value6="0" value5="0" value0="0" value4="1" name="button"/>
+<block value1="0" type="action" value0="0" name="move"/>
+<block value1="0" type="action" value2="0" value0="0" name="colortop"/>
+<block value1="0" type="action" value2="0" value0="0" name="colorbottom"/>
+</set>
+<set/>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

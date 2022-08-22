@@ -1,0 +1,129 @@
+﻿<!DOCTYPE aesl-source>
+<network>
+<node># variables for state
+var state[4] = [0,0,0,0]
+var new_state[4] = [0,0,0,0]
+
+# stop timer 0
+timer.period[0] = 0
+# reset outputs
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+# subroutine to display the current state
+sub display_state
+	call leds.circle(0,state[1]*32,0,state[3]*32,0,state[2]*32,0,state[0]*32)
+
+onevent buttons
+	when button.center == 1 do
+		if state[0] == 0 and state[1] == 0 and state[2] == 0 and state[3] == 0 then
+			call leds.top(32,32,32)
+			new_state[0] = 0
+			new_state[1] = 1
+			new_state[2] = 0
+			new_state[3] = 0
+			timer.period[0] = 1000
+			emit pair_run 0
+		end
+	end
+
+	call math.copy(state, new_state)
+	callsub display_state
+
+
+onevent timer0
+	timer.period[0] = 0
+	if state[0] == 0 and state[1] == 1 and state[2] == 0 and state[3] == 0 then
+		call leds.top(32,0,0)
+		new_state[0] = 0
+		new_state[1] = 0
+		new_state[2] = 0
+		new_state[3] = 1
+		timer.period[0] = 1000
+		emit pair_run 1
+	end
+
+	if state[0] == 0 and state[1] == 0 and state[2] == 0 and state[3] == 1 then
+		call leds.top(32,32,0)
+		new_state[0] = 0
+		new_state[1] = 0
+		new_state[2] = 1
+		new_state[3] = 0
+		timer.period[0] = 1000
+		emit pair_run 2
+	end
+
+	if state[0] == 0 and state[1] == 0 and state[2] == 1 and state[3] == 0 then
+		call leds.top(32,0,32)
+		new_state[0] = 1
+		new_state[1] = 0
+		new_state[2] = 0
+		new_state[3] = 0
+		timer.period[0] = 1000
+		emit pair_run 3
+	end
+
+	if state[0] == 1 and state[1] == 0 and state[2] == 0 and state[3] == 0 then
+		call leds.top(0,32,0)
+		new_state[0] = 0
+		new_state[1] = 1
+		new_state[2] = 0
+		new_state[3] = 0
+		timer.period[0] = 1000
+		emit pair_run 4
+	end
+
+	call math.copy(state, new_state)
+	callsub display_state
+
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<program advanced_mode="1">
+<set>
+<block value2="0" value5="0" value6="0" value3="0" value1="0" name="button" type="event" value0="0" value4="1"/>
+<block value2="2" value3="2" value1="2" name="statefilter" type="state" value0="2"/>
+<block value2="32" value1="32" name="colortop" type="action" value0="32"/>
+<block value2="2" value3="2" value1="1" name="setstate" type="action" value0="2"/>
+<block name="timer" type="action" value0="1000"/>
+</set>
+<set>
+<block name="timeout" type="event"/>
+<block value2="2" value3="2" value1="1" name="statefilter" type="state" value0="2"/>
+<block value2="0" value1="0" name="colortop" type="action" value0="32"/>
+<block value2="2" value3="1" value1="2" name="setstate" type="action" value0="2"/>
+<block name="timer" type="action" value0="1000"/>
+</set>
+<set>
+<block name="timeout" type="event"/>
+<block value2="2" value3="1" value1="2" name="statefilter" type="state" value0="2"/>
+<block value2="0" value1="32" name="colortop" type="action" value0="32"/>
+<block value2="1" value3="2" value1="2" name="setstate" type="action" value0="2"/>
+<block name="timer" type="action" value0="1000"/>
+</set>
+<set>
+<block name="timeout" type="event"/>
+<block value2="1" value3="2" value1="2" name="statefilter" type="state" value0="2"/>
+<block value2="32" value1="0" name="colortop" type="action" value0="32"/>
+<block value2="2" value3="2" value1="2" name="setstate" type="action" value0="1"/>
+<block name="timer" type="action" value0="1000"/>
+</set>
+<set>
+<block name="timeout" type="event"/>
+<block value2="2" value3="2" value1="2" name="statefilter" type="state" value0="1"/>
+<block value2="0" value1="32" name="colortop" type="action" value0="0"/>
+<block value2="2" value3="2" value1="1" name="setstate" type="action" value0="2"/>
+<block name="timer" type="action" value0="1000"/>
+</set>
+<set>
+<block value2="0" value3="0" value1="0" name="statefilter" type="state" value0="0"/>
+</set>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

@@ -1,0 +1,6 @@
+﻿<!DOCTYPE aesl-source>
+<network>
+<event name="pair_run" size="1"/>
+<event name="debug_log" size="14"/>
+<node nodeId="{10fe8336-37db-488e-ae9d-616dec1a81ae}" name="Thymio on DESKTOP-TDFOUPP - 5852"></node>
+</network>

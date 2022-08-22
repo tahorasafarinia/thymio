@@ -1,0 +1,96 @@
+﻿<!DOCTYPE aesl-source>
+<network>
+<event name="pair_run" size="1"/>
+<event name="debug_log" size="14"/>
+<node name="Dast Tala on DESKTOP-TDFOUPP - 28184" nodeId="{6aedf3f2-d9ba-40ec-9d19-e0e729637342}"># reset outputs
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+onevent prox
+	when prox.ground.delta[0] >= 450 and prox.ground.delta[1] >= 450 do
+		motor.left.target = 500
+		motor.right.target = 500
+		call leds.top(0,0,0)
+		emit pair_run 0
+	end
+
+	when prox.ground.delta[0] >= 450 and prox.ground.delta[1] &lt;= 400 do
+		motor.left.target = 0
+		motor.right.target = 250
+		call leds.top(32,0,32)
+		emit pair_run 1
+	end
+
+	when prox.ground.delta[0] &lt;= 400 and prox.ground.delta[1] >= 450 do
+		motor.left.target = 250
+		motor.right.target = 0
+		call leds.top(0,0,32)
+		emit pair_run 2
+	end
+
+	when prox.ground.delta[0] &lt;= 400 and prox.ground.delta[1] &lt;= 400 do
+		motor.left.target = 250
+		motor.right.target = 0
+		call leds.bottom.left(0,32,0)
+		call leds.bottom.right(0,32,0)
+		emit pair_run 3
+	end
+
+	when prox.horizontal[0] >= 2000 and prox.horizontal[1] >= 2000 and prox.horizontal[2] >= 2000 and prox.horizontal[3] >= 2000 and prox.horizontal[4] >= 2000 do
+		motor.left.target = 0
+		motor.right.target = 0
+		call leds.top(32,0,0)
+		emit pair_run 4
+	end
+
+	when prox.horizontal[0] &lt;= 1000 and prox.horizontal[1] &lt;= 1000 and prox.horizontal[2] &lt;= 1000 and prox.horizontal[3] &lt;= 1000 and prox.horizontal[4] &lt;= 1000 do
+		motor.left.target = 0
+		motor.right.target = 250
+		call leds.top(0,0,0)
+		emit pair_run 5
+	end
+
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<program advanced_mode="0">
+<set>
+<block name="proxground" value0="1" value2="400" value3="450" type="event" value1="1"/>
+<block name="move" value0="500" type="action" value1="500"/>
+<block name="colortop" value0="0" value2="0" type="action" value1="0"/>
+</set>
+<set>
+<block name="proxground" value0="1" value2="400" value3="450" type="event" value1="2"/>
+<block name="move" value0="0" type="action" value1="250"/>
+<block name="colortop" value0="32" value2="32" type="action" value1="0"/>
+</set>
+<set>
+<block name="proxground" value0="2" value2="400" value3="450" type="event" value1="1"/>
+<block name="move" value0="250" type="action" value1="0"/>
+<block name="colortop" value0="0" value2="32" type="action" value1="0"/>
+</set>
+<set>
+<block name="proxground" value0="2" value2="400" value3="450" type="event" value1="2"/>
+<block name="move" value0="250" type="action" value1="0"/>
+<block name="colorbottom" value0="0" value2="0" type="action" value1="32"/>
+</set>
+<set>
+<block name="prox" value0="1" value2="1" value6="0" value3="1" type="event" value7="1000" value1="1" value5="0" value4="1" value8="2000"/>
+<block name="move" value0="0" type="action" value1="0"/>
+<block name="colortop" value0="32" value2="0" type="action" value1="0"/>
+</set>
+<set>
+<block name="prox" value0="2" value2="2" value6="0" value3="2" type="event" value7="1000" value1="2" value5="0" value4="2" value8="2000"/>
+<block name="move" value0="0" type="action" value1="250"/>
+<block name="colortop" value0="0" value2="0" type="action" value1="0"/>
+</set>
+<set/>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

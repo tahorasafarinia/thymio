@@ -1,0 +1,27 @@
+﻿<!DOCTYPE aesl-source>
+<network>
+<event name="pair_run" size="1"/>
+<event name="debug_log" size="14"/>
+<node name="karaghah on DESKTOP-TDFOUPP - 30892" nodeId="{63b496ab-d0b8-416f-8c8c-69daa3dc5201}"><toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<program advanced_mode="0">
+<set>
+<block value0="0" type="event" name="prox" value4="0" value7="1000" value3="2" value5="0" value8="2000" value1="2" value2="2" value6="0"/>
+<block value0="500" type="action" name="move" value1="500"/>
+<block value0="0" type="action" name="colortop" value1="32" value2="0"/>
+<block value0="0" type="action" name="colorbottom" value1="0" value2="0"/>
+</set>
+<set>
+<block value0="0" type="event" name="prox" value4="0" value7="1000" value3="1" value5="0" value8="2000" value1="1" value2="1" value6="0"/>
+<block value0="0" type="action" name="move" value1="0"/>
+<block value0="32" type="action" name="colorbottom" value1="0" value2="0"/>
+<block value0="0" type="action" name="colortop" value1="0" value2="0"/>
+</set>
+<set/>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

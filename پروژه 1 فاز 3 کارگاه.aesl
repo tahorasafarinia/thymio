@@ -1,0 +1,53 @@
+﻿<!DOCTYPE aesl-source>
+<network>
+<event name="pair_run" size="1"/>
+<event name="debug_log" size="14"/>
+<node name="karaghah on DESKTOP-TDFOUPP - 9836" nodeId="{728da183-d433-44f6-b6ed-f217978de19f}"># reset outputs
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+onevent prox
+	when prox.horizontal[1] &lt;= 1000 and prox.horizontal[2] &lt;= 1000 and prox.horizontal[3] &lt;= 1000 do
+		motor.left.target = 500
+		motor.right.target = 500
+		call leds.top(0,32,0)
+		call leds.bottom.left(0,0,0)
+		call leds.bottom.right(0,0,0)
+		emit pair_run 0
+	end
+
+	when prox.horizontal[1] >= 2000 and prox.horizontal[2] >= 2000 and prox.horizontal[3] >= 2000 do
+		motor.left.target = -350
+		motor.right.target = -350
+		call leds.bottom.left(32,0,0)
+		call leds.bottom.right(32,0,0)
+		call leds.top(0,0,0)
+		emit pair_run 1
+	end
+
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<program advanced_mode="0">
+<set>
+<block value0="0" value4="0" value6="0" value8="2000" value2="2" name="prox" value1="2" value7="1000" value3="2" value5="0" type="event"/>
+<block value0="500" name="move" value1="500" type="action"/>
+<block value0="0" value2="0" name="colortop" value1="32" type="action"/>
+<block value0="0" value2="0" name="colorbottom" value1="0" type="action"/>
+</set>
+<set>
+<block value0="0" value4="0" value6="0" value8="2000" value2="1" name="prox" value1="1" value7="1000" value3="1" value5="0" type="event"/>
+<block value0="-350" name="move" value1="-350" type="action"/>
+<block value0="32" value2="0" name="colorbottom" value1="0" type="action"/>
+<block value0="0" value2="0" name="colortop" value1="0" type="action"/>
+</set>
+<set/>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

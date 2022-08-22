@@ -1,0 +1,18 @@
+﻿<!DOCTYPE aseba-playground>
+<aseba-playground>
+	<color name="wall" r="0.9" g="0.9" b="0.9" />
+	<color name="red" r="0.77" g="0.2" b="0.15" />
+	<color name="green" r="0" g="0.7" b="0" />
+	<color name="blue" r="0" g="0.38" b="0.61" />
+        <color name="orange" r="1" g="0.3" b="0" />
+	
+	<world w="150" h="40" color="wall" groundTexture="Tamrin1-Pic.png" />
+	
+	<wall x="50" y="20" l1="12" l2="5" h="5" mass="500" color="blue" angle="1.570" />
+        <wall x="80" y="20" l1="12" l2="5" h="5" mass="500" color="orange" angle="1.570" />
+	<wall x="110" y="20" l1="12" l2="5" h="5" mass="500" color="red" angle="1.570" />
+	
+	<robot type="thymio2" x="20" y="20" port="33333" />
+	
+	<process command=":asebamassloader --once thymio-default-behaviours.aesl tcp:localhost;33333" />
+</aseba-playground>
